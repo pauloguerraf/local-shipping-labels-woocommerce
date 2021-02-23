@@ -252,11 +252,13 @@ class Main {
 			
 			// The loop to order items ( WC_Order_Item_Product objects )
 			foreach( $order->get_items() as $item_id => $item ){
+				$item_data = wc_get_order_item_meta( $item_id, '_woosb_parent_id', true );
+				if($item_data == 0){
 				$packing_list_html .= "<tr>";
 				$packing_list_html .= "<td width='80%'>{$item->get_name()}</td>";
 				$packing_list_html .= "<td style='text-align:right'>x{$item->get_quantity()}</td>";
 				$packing_list_html .= "</tr>";
-			
+				}
 			}
 
 			$packing_list_html .= "</table>";
